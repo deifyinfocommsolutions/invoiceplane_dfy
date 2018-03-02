@@ -102,7 +102,6 @@ mkdir -p $final_path
 wget http://uwezolearning.com/invoiceplane.zip -P $final_path/
 unzip $final_path/invoiceplane.zip -d $parent_dir > /dev/null
 
-
 #chmod 777 -R $parent_dir/application/modules/default/plugins/AccessControl.php
 # Check if pure-ftpd is already installed
 if test -f /usr/sbin/pure-ftpd-ldap
@@ -134,7 +133,12 @@ then
 	echo "DB_HOST= localhost" | tee -a "$final_path/db_info.txt"
 fi
 
-
+ynh_replace_string "__appurl__" "https://$domain/$path_url/$app" ../sources/ipconfig.php
+ynh_replace_string "__dbusername__" "$db_name" ../sources/ipconfig.php
+ynh_replace_string "__dbpassword__" "$db_pwd" ../sources/ipconfig.php
+ynh_replace_string "__dbname__" "$db_name" ../sources/ipconfig.php
+cp ../sources/ipconfig.php $final_path/ipconfig.php
+chmod 777 -R $final_path/ipconfig.php
 rm -r $parent_dir/invoiceplane.zip
 
 #=================================================

@@ -1,2 +1,1 @@
-# invoiceplane_dfy
-InvoicePlane Integration Solution for iBeads
+# Deify Infocomm Solutions Custom Integration for Accounts
